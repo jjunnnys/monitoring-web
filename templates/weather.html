@@ -1,0 +1,91 @@
+{% set title = "기상정보" %} {% extends "./layout/base.html" %} {% block
+contents%}
+
+<!-- 기상정보 -->
+<section
+  class="content-section text-center"
+  id="kWeather"
+  style="margin-bottom: 100px;"
+>
+  <div class="container">
+    <div class="content-section-heading">
+      <h3 class="text-secondary mb-0">관측소 : 대천해수욕장</h3>
+      <h1 class="mb-5">관측소 실시간 기상정보</h1>
+      {% if time %}
+      <h5 class="mb-5">
+        <em>{{ time }}</em>
+      </h5>
+      {% else %}
+      <div class="modal-wrapper js-loading">
+        <div class="text-center loading">
+          <h1>데이터 불러오는 중</h1>
+          <i class="fas fa-spinner fa-3x fa-spin"></i>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+          <span class="service-icon1 mx-auto mb-3 css-w js-w">
+            <i class="fas fa-temperature-low"></i>
+          </span>
+          <h4>
+            <strong class="strong">기온</strong>
+          </h4>
+          <p class="js-weather text-faded mb-0 font-weight-bold">
+            {{ at }} <span class="text-small">℃</span>
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+          <span class="service-icon2 mx-auto mb-3 css-w js-w">
+            <i class="fas fa-tint"></i>
+          </span>
+          <h4>
+            <strong class="strong">수온</strong>
+          </h4>
+          <p class="js-weather text-faded mb-0 font-weight-bold">
+            {{ wt }} <span class="text-small">℃</span>
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+          <span class="service-icon3 mx-auto mb-3 css-w js-w">
+            <i class="fas fa-wind"></i>
+          </span>
+          <h4>
+            <strong class="strong">풍속</strong>
+          </h4>
+          <p class="js-weather text-faded mb-0 font-weight-bold">
+            {{ ws }} <span class="text-small">m/s</span>
+          </p>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+          <span class="service-icon4 mx-auto mb-3 css-w js-w">
+            <i class="fas fa-water"></i>
+          </span>
+          <h4>
+            <strong class="strong">파고</strong>
+          </h4>
+          <p class="js-weather text-faded mb-0 font-weight-bold">
+            {{ wh }} <span class="text-small">m</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="sticky-footer">
+  <div class="text-left container">
+    <p class="mb-0">페퍼보이</p>
+    <p>
+      PepperBoy
+    </p>
+    <p class="mb-0 footer-text">Copyright &copy; ppby 2020</p>
+  </div>
+</footer>
+
+{% endblock %} {% block script %}
+<script src="/js/event/weather.js"></script>
+{% endblock %}

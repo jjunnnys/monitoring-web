@@ -1,0 +1,16 @@
+{
+  "name": "monitering-web",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "seabank",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx nodemon -e js,html server.js",
+    "server": "npx json-server --watch tblSensorData.json --port 5000"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "nunjucks": "3.2.1",
+    "request": "2.88.2"
+  }
+}

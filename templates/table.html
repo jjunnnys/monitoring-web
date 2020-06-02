@@ -1,0 +1,105 @@
+{% set title = "데이터 현황" %} {% extends "./layout/base.html" %} {% block
+contents%}
+
+<!-- 데이터 현황 -->
+<section class="content-section" id="sensorTable">
+  <!-- 테이블 -->
+  <div class="container-fuild">
+    <!-- Page Heading -->
+    {% if itemList[0] %}
+    <h1 class="mb-2 text-center">데이터 현황</h1>
+    {% else %}
+    <div class="modal-wrapper js-loading">
+      <div class="text-center loading">
+        <h1>데이터 불러오는 중</h1>
+        <i class="fas fa-spinner fa-3x fa-spin"></i>
+      </div>
+    </div>
+    {% endif %}
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 text-primary">
+          Buoy
+        </h6>
+      </div>
+      <div class="card-body p-5 bg-white rounded">
+        <div class="table-responsive">
+          <table
+            class="table table-striped table-bordered"
+            id="dataTable"
+            width="100%"
+            cellspacing="0"
+          >
+            <thead>
+              <tr>
+                <th>시간</th>
+                <th>수온</th>
+                <th>용존산소</th>
+                <th>염도</th>
+                <th>클로로필</th>
+                <th>pH</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in itemList %}
+              <tr>
+                <td>
+                  {{ item.SensingTime.replace("-", " ").substring(0, 2) + "-" +
+                  item.SensingTime.substring(2, 4) + "-" +
+                  item.SensingTime.substring(4, 6) + " " +
+                  item.SensingTime.substring(7, 9) + ":" +
+                  item.SensingTime.substring(9, 11) }}
+                </td>
+                <td>
+                  {{ item.pi1_ui1 }}
+                  <span class="text-small">℃</span>
+                </td>
+                <td>
+                  {{ item.pi20_ui117 }}
+                  <span class="text-small">㎎/L</span>
+                </td>
+                <td>
+                  {{ item.pi12_ui97 }}
+                  <span class="text-small">PSU</span>
+                </td>
+                <td>
+                  {{ item.pi50_ui118 }}
+                  <span class="text-small">μg/L</span>
+                </td>
+                <td>
+                  {{ item.pi17_ui145 }}
+                  <span class="text-small">pH</span>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="sticky-footer">
+  <div class="text-left container">
+    <p class="mb-0">페퍼보이</p>
+    <p>
+      PepperBoy
+    </p>
+    <p class="mb-0 footer-text">Copyright &copy; ppby 2020</p>
+  </div>
+</footer>
+
+{% endblock %} {% block script %}
+<script
+  type="text/javascript"
+  src="vendor/datatables/jquery.dataTables.min.js"
+></script>
+<script
+  type="text/javascript"
+  src="vendor/datatables/dataTables.bootstrap4.min.js"
+></script>
+<script type="text/javascript" src="js/datatables.js"></script>
+
+{% endblock %}

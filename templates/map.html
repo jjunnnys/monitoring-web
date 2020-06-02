@@ -1,0 +1,53 @@
+{% set title = "Buoy 위치" %} {% extends "./layout/base.html" %} {% block
+contents%}
+
+<!-- Buoy 위치 -->
+<section class="content-section" id="kMap">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        {% if GEO_LAT_INT %}
+        <h1 class="mb-3 text-center">Buoy 위치</h1>
+        {% else %}
+        <div class="modal-wrapper js-loading">
+          <div class="text-center loading">
+            <h1>데이터 불러오는 중</h1>
+            <i class="fas fa-spinner fa-3x fa-spin"></i>
+          </div>
+        </div>
+        {% endif %}
+        <div class="js-map map map-size">
+          <button class="btn btn-secondary curr-btn js-curr-btn">
+            Buoy 위치
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="sticky-footer">
+  <div class="text-left container">
+    <p class="mb-0">페퍼보이</p>
+    <p>
+      PepperBoy
+    </p>
+    <p class="mb-0 footer-text">Copyright &copy; ppby 2020</p>
+  </div>
+</footer>
+
+{% endblock %} {% block script %}
+<script lang="javascript">
+  const GEO_LAT_INT = {{GEO_LAT_INT}};
+  const GEO_LAT_FLOAT = {{GEO_LAT_FLOAT}};
+  const GEO_LON_INT = {{GEO_LON_INT}};
+  const GEO_LON_FLOAT = {{GEO_LON_FLOAT}};
+</script>
+<script
+  type="text/javascript"
+  src="//dapi.kakao.com/v2/maps/sdk.js?appkey=사용자키"
+></script>
+<script src="js/kakaoMap.js"></script>
+
+{% endblock %}

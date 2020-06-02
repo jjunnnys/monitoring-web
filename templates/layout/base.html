@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta name="description" content="2020 Seabank monitoring system website" />
+    <meta name="author" content="ppby" />
+
+    <title>{{title}}</title>
+
+    <!-- 파비콘  -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+      href="vendor/datatables/dataTables.bootstrap4.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gugi&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- 불러오기 -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  </head>
+  <body id="page-top">
+    <a class="menu-toggle rounded">
+      <i class="fas fa-bars"></i>
+    </a>
+    <!-- Navigation -->
+    <nav id="sidebar-wrapper">
+      <ul class="sidebar-nav">
+        {% from "macro/link.html" import headLink %} {{ headLink( '/' ) }} {%
+        from "macro/link.html" import link %} {{ link( './graph' , "현재 데이터"
+        , req_path ) }} {{ link( './table' , "데이터 현황" , req_path ) }} {{
+        link( './map' , "Buoy 위치" , req_path ) }} {{ link( './weather' ,
+        "기상정보" , req_path ) }}
+      </ul>
+    </nav>
+
+    {% block contents%} {% endblock %}
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded js-scroll-trigger topPage" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- 스크립트 -->
+    {% block script %} {% endblock %}
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <script src="/js/event/refresh.js"></script>
+    <script src="js/trigger.js"></script>
+  </body>
+</html>

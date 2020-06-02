@@ -1,0 +1,208 @@
+{% set title = "현재 데이터" %} {% extends "./layout/base.html" %} {% block
+contents%}
+
+<!-- 현재 데이터 -->
+<section class="content-section" id="sensorData">
+  <!-- 카드 -->
+  <div class="container">
+    <div class="text-center">
+      {% if SENSOR_DATE_TIME %}
+      <h3 class="mb-5">
+        {{ SENSOR_DATE_TIME }}
+      </h3>
+      {% else %}
+      <div class="modal-wrapper js-loading">
+        <div class="text-center loading">
+          <h1>데이터 불러오는 중</h1>
+          <i class="fas fa-spinner fa-3x fa-spin"></i>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    <div class="row">
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-wt shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-wt mb-1">
+                  수온
+                </div>
+                <h5 class="mb-0 font-weight-bold text-gray-800">
+                  {{ sensorTmep[0] }}
+                  <span class="text-small">℃</span>
+                </h5>
+              </div>
+              <div class="col-auto">
+                <i
+                  class="fas fa-thermometer-quarter fa-3x select-wt js-selected text-gray-300"
+                >
+                </i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Earnings (Monthly) Card Example -->
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-do shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div
+                  class="text-xs font-weight-bold text-do text-uppercase mb-1"
+                >
+                  용존산소
+                </div>
+                <h5 class="mb-0 font-weight-bold text-gray-800">
+                  {{ doSensor[0] }} <span class="text-small">㎎/L</span>
+                </h5>
+              </div>
+              <div class="col-auto">
+                <i
+                  class="fas fa-fish fa-3x select-do js-selected text-gray-300"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-salt shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-salt mb-1">
+                  염도
+                </div>
+                <h5 class="mb-0 font-weight-bold text-gray-800">
+                  {{ salt[0] }} <span class="text-small">PSU</span>
+                </h5>
+              </div>
+              <div class="col-auto">
+                <i
+                  class="fas fa-tint fa-3x select-salt js-selected text-gray-300"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-chlo shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-chlo mb-1">
+                  클로로필
+                </div>
+                <h5 class="mb-0 font-weight-bold text-gray-800">
+                  {{ chlo[0] }} <span class="text-small">μg/L</span>
+                </h5>
+              </div>
+              <div class="col-auto">
+                <i
+                  class="fas fa-leaf fa-3x select-chlo js-selected text-gray-300"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-md-12 mb-4">
+        <div class="card border-left-ph shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-ph mb-1">
+                  pH
+                </div>
+                <h5 class="mb-0 font-weight-bold text-gray-800">
+                  {{ ph[0] }} <span class="text-small">pH</span>
+                </h5>
+              </div>
+              <div class="col-auto">
+                <i
+                  class="fas fa-flask fa-3x select-ph js-selected text-gray-300"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 그래프 -->
+  <div class="both-section">
+    <div class="container">
+      <!-- Content Row -->
+      <div class="row">
+        <div class="col-xl-12 col-lg-12">
+          <h4>그림을 선택해서 그래프를 확인하세요.</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12">
+          <!-- Area Chart -->
+          <div class="card shadow">
+            <div
+              class="card-header py-3 d-flex flex-row align-items-center justify-content-between"
+            >
+              <h6 class="m-0 font-weight-bold text-third js-data-title"></h6>
+              <span class="text-small">{{ SENSOR_DATE }}</span>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+              <div class="chart-area">
+                <canvas class="js-allChart"></canvas>
+              </div>
+              <hr />
+              30분 간격 업데이트
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer id="sticky-footer">
+  <div class="text-left container">
+    <p class="mb-0">페퍼보이</p>
+    <p>
+      PepperBoy
+    </p>
+    <p class="mb-0 footer-text">Copyright &copy; ppby 2020</p>
+  </div>
+</footer>
+
+{% endblock %} {% block script %}
+<script lang="javascript">
+  const sensorTimeArrs = [{{sensorTime}}];
+  let timeArr = [];
+  sensorTimeArrs.forEach(arr => {
+    timeArr.push(String(arr))
+  })
+  const sensorTimeArr = timeArr.slice(0,100);
+
+  const wtLists = [{{sensorTmep}}];
+  const wtList = wtLists.slice(0,100);
+  const doLists = [{{doSensor}}];
+  const doList = doLists.slice(0,100);
+  const saltLists = [{{salt}}];
+  const saltList = saltLists.slice(0,100);
+  const chloLists = [{{chlo}}];
+  const chloList = chloLists.slice(0,100);
+  const phLists = [{{ph}}];
+  const phList = phLists.slice(0,100);
+</script>
+<script src="/vendor/chart.js/Chart.min.js"></script>
+<script src="/js/chart/allChart.js"></script>
+{% endblock %}
